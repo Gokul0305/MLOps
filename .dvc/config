@@ -3,3 +3,4 @@
 ['remote "myremote"']
     url = gdrive://1hcEQCEIPuwOmWqOSN2GEbJntIJ6HIa-2/dvcstore
     gdrive_use_service_account = true
+    gdrive_user_credentials_file = ../config/credential.json
