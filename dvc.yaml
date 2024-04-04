@@ -7,5 +7,5 @@ stages:
     always_changed: true
   checkout_and_fetch_data:
     cmd:
-      - git checkout v0.1
+      - git checkout v0.2
       - dvc pull -r myremote
