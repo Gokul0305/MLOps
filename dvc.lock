@@ -1,0 +1,8 @@
+schema: '2.0'
+stages:
+  set_remote:
+    cmd:
+    - dvc remote add --default myremote gdrive://1hcEQCEIPuwOmWqOSN2GEbJntIJ6HIa-2/dvcstore
+      -f
+    - dvc remote modify myremote gdrive_use_service_account true
+    - dvc remote modify myremote --local gdrive_service_account_json_file_path config/credential.json
