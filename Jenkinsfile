@@ -4,10 +4,6 @@ pipeline{
         label "localwindows"
     }
 
-    triggers {
-        githubPullRequest()
-    }
-
     environment{
 
         PYTHON_VERSION = '3.9'
@@ -15,22 +11,6 @@ pipeline{
     }
 
     stages{
-
-        stage('Check PR') {
-            when {
-                allOf {
-                    expression { 
-                        def changeTarget = githubScmSource().getPRTargetBranch(env.CHANGE_ID)
-                        def changeSource = githubScmSource().getPRSourceBranch(env.CHANGE_ID)
-                        return changeSource == 'dev' && changeTarget == 'main'
-                    }
-                }
-            }
-            steps {
-                echo 'Running pipeline for PR from dev to main'
-                // Your build steps go here
-            }
-        }
         stage("Clone Repository"){
             steps{
                 checkout scm
