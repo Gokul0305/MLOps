@@ -15,7 +15,8 @@ dependencies = [
     "pymodbus",
     "ensure",
     "pyserial",
-    "python-box"
+    "python-box",
+    "toml"
 ]
 
 [tool.setuptools.dynamic]
