@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PLCConnect"
+description = "PLC Communication Library"
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Gokulvigneshwaran", email = "gokul.m@mechmetengineers.com"}]
+
+dependencies = [
+    "pydantic",
+    "pymodbus",
+    "ensure",
+    "pyserial",
+    "python-box"
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "PLCConnect.__version__"}
