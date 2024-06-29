@@ -13,9 +13,7 @@ pipeline{
     environment{
 
         VENV_DIR  = 'JenkinsEnvironment'
-        def jobNameParts = env.JOB_NAME.split('/')
-        def jobName = jobNameParts[1]
-        def PR = jobNameParts[2]
+        def PR = env.JOB_NAME.split('/').last()
     }
 
     // Stages
@@ -86,7 +84,7 @@ pipeline{
 
                 success{
                         emailext(
-                                subject: "${jobName} - Build #${env.BUILD_NUMBER} - SUCCESS - Unit tests: Successfully passed",
+                                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - SUCCESS - Unit tests: Successfully passed",
                                 body: """<p style="font-size:16px; font-family:Arial;">Build #${env.BUILD_NUMBER} of project '${env.JOB_NAME}' was successful.</p>
                                         <p style="font-size:16px; font-family:Arial;">Unit tests have passed successfully.</p>
                                         <p style="font-size:16px; font-family:Arial;">${PR} initiated by: ${env.CHANGE_AUTHOR}</p>
@@ -99,7 +97,7 @@ pipeline{
 
                 failure{
                         emailext(
-                            subject: "${jobName} - Build #${env.BUILD_NUMBER} - FAILURE - Unit tests: Failed",
+                            subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - FAILURE - Unit tests: Failed",
                             body: """<p style="font-size:16px; font-family:Arial;">Build #${env.BUILD_NUMBER} of project '${env.JOB_NAME}' failed.</p>
                                     <p style="font-size:16px; font-family:Arial;">Unit tests have failed.</p>
                                     <p style="font-size:16px; font-family:Arial;">Pull request initiated by: ${env.CHANGE_AUTHOR}</p>
