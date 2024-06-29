@@ -13,8 +13,9 @@ pipeline{
     environment{
 
         VENV_DIR  = 'JenkinsEnvironment'
-        def jobName = env.JOB_NAME.split('/')[1]
-        def PR = env.JOB_NAME.split('/').last()
+        def jobNameParts = env.JOB_NAME.split('/')
+        def jobName = jobNameParts[1]
+        def PR = jobNameParts[2]
     }
 
     // Stages
