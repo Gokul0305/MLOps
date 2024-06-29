@@ -74,7 +74,7 @@ pipeline{
                         """
                     } else {
                         bat """
-                            python tests/run_tests.py
+                            python tests/run_test.py
                         """
                     }
                 }
