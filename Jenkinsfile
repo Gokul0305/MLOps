@@ -100,7 +100,7 @@ pipeline{
                             subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - FAILURE - Unit tests: Failed",
                             body: """<p style="font-size:16px; font-family:Arial;">Build #${env.BUILD_NUMBER} of project '${env.JOB_NAME}' failed.</p>
                                     <p style="font-size:16px; font-family:Arial;">Unit tests have failed.</p>
-                                    <p style="font-size:16px; font-family:Arial;">Pull request initiated by: ${env.CHANGE_AUTHOR}</p>
+                                    <p style="font-size:16px; font-family:Arial;">${PR} initiated by: ${env.CHANGE_AUTHOR}</p>
                                     <p style="font-size:16px; font-family:Arial;">Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                                     <p style="font-size:16px; font-family:Arial;">Best Regards,<br>Jenkins</p>""",
                             to: "gokulvignesh1234@gmail.com"
