@@ -138,7 +138,7 @@ pipeline{
                     def uploadSpec = """{
                         "files": [{
                             "pattern": "${FILE_PATH}",
-                            "target": "${REPO}/${PROJECT}/${VERSION}/exe/"
+                            "target": "${REPO}/${PROJECT}/${VERSION}/"
                         }]
                     }"""
                     
