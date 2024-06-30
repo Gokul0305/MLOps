@@ -143,7 +143,12 @@ pipeline{
                     }"""
                     
                     // Upload artifact
-                    server.upload(uploadSpec)
+                    try {
+                        server.upload(uploadSpec)
+                    } catch (Exception e) {
+                        echo "Error occurred during upload: ${e.getMessage()}"
+                        throw e
+                    }
                 }
             }
         }
