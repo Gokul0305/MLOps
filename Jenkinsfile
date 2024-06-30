@@ -14,6 +14,12 @@ pipeline{
 
         VENV_DIR  = 'JenkinsEnvironment'
         def PR = env.JOB_NAME.split('/').last()
+        ARTIFACTORY_URL = 'http://192.168.209.179:8082/artifactory'
+        ARTIFACTORY_CREDENTIALS_ID = 'Artifactory'
+        REPO = 'Python-Executables'
+        PROJECT = 'Test'
+        VERSION = '1.0.0'
+        FILE_PATH = 'dist/main.exe'
     }
 
     // Stages
@@ -55,6 +61,7 @@ pipeline{
                             call %VENV_DIR%\\Scripts\\activate
                             pip install -r requirements.txt
                             pip install .
+                            pip install pyinstaller
                             pip install html-testRunner
                         """
                     }
@@ -107,6 +114,37 @@ pipeline{
                         )
                 }
                 
+            }
+        }
+
+        stage('Build Executable') {
+            steps {
+                // Build the .exe file using PyInstaller
+                bat 'pyinstaller --onefile main.py'
+            }
+        }
+
+        
+
+
+
+        stage('Upload Artifact to Artifactory') {
+            steps {
+                script {
+                    // Configure Artifactory server
+                    def server = Artifactory.server('Artifactory')
+                    
+                    // Define upload specifications
+                    def uploadSpec = """{
+                        "files": [{
+                            "pattern": "${FILE_PATH}",
+                            "target": "${REPO}/${PROJECT}/${VERSION}/exe/"
+                        }]
+                    }"""
+                    
+                    // Upload artifact
+                    server.upload(uploadSpec)
+                }
             }
         }
 
