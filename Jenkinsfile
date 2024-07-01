@@ -142,7 +142,7 @@ stage('Run Unit Tests') {
                     // Generate tag name (e.g., v1.0.0)
                     
                     // Tag the Git repository
-                    bat "git tag ${VERSION}"
+                    bat "git tag v${VERSION}"
                 }
             }
         }
@@ -151,7 +151,7 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     // Push the tag to remote repository
-                    bat "git push origin ${VERSION}"
+                    bat "git push origin v${VERSION}"
                 }
             }
         }
