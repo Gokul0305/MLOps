@@ -143,7 +143,7 @@ stage('Run Unit Tests') {
                     def tagName = "v${VERSION}"
                     
                     // Tag the Git repository
-                    bat "git tag -a ${tagName} -m 'Version ${VERSION} release'"
+                    bat "git tag ${tagName}"
                 }
             }
         }
