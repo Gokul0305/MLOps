@@ -140,10 +140,9 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     // Generate tag name (e.g., v1.0.0)
-                    def tagName = "v${VERSION}"
                     
                     // Tag the Git repository
-                    bat "git tag ${tagName}"
+                    bat "git tag ${VERSION}"
                 }
             }
         }
@@ -152,7 +151,7 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     // Push the tag to remote repository
-                    bat "git push origin ${tagName}"
+                    bat "git push origin ${VERSION}"
                 }
             }
         }
