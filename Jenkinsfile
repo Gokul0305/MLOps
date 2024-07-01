@@ -147,12 +147,19 @@ stage('Run Unit Tests') {
         }
         
 
-        stage('Releasing New Build') {
+        stage('GitHub Release') {
             steps {
                 script {
-                    bat """
-                    gh release create v${VERSION} --generate-notes --latest    --notes "[Download Artifact](http://192.168.1.40:8082/artifactory/Python-Executables/Test/1.0.0/main.exe)" --title "${PROJECT} v${VERSION}"
-                    """
+                    def releaseTitle = "${PROJECT} v1.0.0"
+                    def releaseNotes = "[Download Artifact](${env.ARTIFACTORY_URL}/${REPO}/${PROJECT}/${VERSION}/">${env.ARTIFACTORY_URL}/${REPO}/${PROJECT}/${VERSION})"
+
+                    // Authenticate with GitHub using the provided PAT
+                    withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: '', passwordVariable: 'GITHUB_TOKEN')]) {
+                        bat """
+                            gh auth login --with-token \$GITHUB_TOKEN
+                            gh release create v${VERSION} --generate-notes --notes "${releaseNotes}" --title "${releaseTitle}"
+                        """
+                    }
                 }
             }
         }
