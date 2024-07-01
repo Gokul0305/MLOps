@@ -151,13 +151,13 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     def releaseTitle = "${PROJECT} v1.0.0"
-                    def releaseNotes = "[Download Artifact]"
+                    def releaseNotes = "[Download Artifact] (YOUR_ARTIFACTORY_URL/${REPO}/${PROJECT}/${VERSION}/main.exe)"
 
                     // Authenticate with GitHub using the provided PAT
                     withCredentials([usernamePassword(credentialsId: 'Gokul0305-PAT', usernameVariable: 'Gokul0305', passwordVariable: 'GITHUB_TOKEN')]) {
                         bat """
                             gh auth login --with-token \$GITHUB_TOKEN
-                            gh release create v${VERSION} --generate-notes --notes "${releaseNotes}" --title "${releaseTitle}"
+                            gh release create v${VERSION} --generate-notes --notes "${releaseNotes}" --title "${releaseTitle} --generate-notes --latest"
                         """
                     }
                 }
