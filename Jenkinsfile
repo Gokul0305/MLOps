@@ -3,9 +3,7 @@ pipeline{
     // Agent Configuration
 
     agent{
-
         label "localwindows"
-
     }
 
     // Environment Setup
