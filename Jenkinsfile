@@ -14,8 +14,6 @@ pipeline{
 
         VENV_DIR  = 'JenkinsEnvironment'
         def PR = env.JOB_NAME.split('/').last()
-        def ARTIFACTORY_URL = env.ARTIFACTORY_URL
-        def ARTIFACTORY_CREDENTIALS_ID = env.ARTIFACTORY_CREDENTIALS_ID
         REPO = 'Python-Executables'
         PROJECT = 'Test'
         VERSION = '1.0.0'
@@ -116,7 +114,7 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     // Configure Artifactory server
-                    def server = Artifactory.server('Artifactory')
+                    def server = Artifactory.server(env.ARTIFACTORY_CREDENTIALS_ID')
                     
                     // Define upload specifications
                     def uploadSpec = """{
@@ -152,7 +150,7 @@ post {
                     <p style="font-size:16px; font-family:Arial;">Unit tests and Build have passed successfully.</p>
                     <p style="font-size:16px; font-family:Arial;">${PR} initiated by: ${env.CHANGE_AUTHOR}</p>
                     <p style="font-size:16px; font-family:Arial;">Check the Jenkins build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                    <p style="font-size:16px; font-family:Arial;">Check the JFrog Artifactory: <a href="${ARTIFACTORY_URL}/${REPO}/${PROJECT}/${VERSION}/">${ARTIFACTORY_URL}/${REPO}/${PROJECT}/${VERSION}/</a></p>
+                    <p style="font-size:16px; font-family:Arial;">Check the JFrog Artifactory: <a href="${env.ARTIFACTORY_URL}/${REPO}/${PROJECT}/${VERSION}/">${env.ARTIFACTORY_URL}/${REPO}/${PROJECT}/${VERSION}/</a></p>
                     <p style="font-size:16px; font-family:Arial;">Best Regards,<br>Jenkins</p>""",
             to: env.DEFAULT_RECIPIENTS
         )
