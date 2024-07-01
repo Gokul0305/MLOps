@@ -154,7 +154,7 @@ stage('Run Unit Tests') {
                     def releaseNotes = "[Download Artifact]"
 
                     // Authenticate with GitHub using the provided PAT
-                    withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: '', passwordVariable: 'GITHUB_TOKEN')]) {
+                    withCredentials([usernamePassword(credentialsId: 'Gokul0305-PAT', usernameVariable: 'Gokul0305', passwordVariable: 'GITHUB_TOKEN')]) {
                         bat """
                             gh auth login --with-token \$GITHUB_TOKEN
                             gh release create v${VERSION} --generate-notes --notes "${releaseNotes}" --title "${releaseTitle}"
