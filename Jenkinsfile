@@ -136,22 +136,22 @@ stage('Run Unit Tests') {
 
         }
 
-        stage('Tag Git Repository') {
+        stage('Tagging git source code') {
             steps {
                 script {
-                    // Generate tag name (e.g., v1.0.0)
-                    
-                    // Tag the Git repository
                     bat "git tag v${VERSION}"
+                    bat "git push origin v${VERSION}"
                 }
             }
         }
         
-        stage('Push Git Tag') {
+
+        stage('Releasing New Build') {
             steps {
                 script {
-                    // Push the tag to remote repository
-                    bat "git push origin v${VERSION}"
+                    bat """
+                    gh release create v${VERSION} --generate-notes --latest    --notes "[Download Artifact](http://192.168.1.40:8082/artifactory/Python-Executables/Test/1.0.0/main.exe)" --title "${PROJECT} v${VERSION}"
+                    """
                 }
             }
         }
