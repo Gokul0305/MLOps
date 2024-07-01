@@ -151,7 +151,7 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     def releaseTitle = "${PROJECT} v1.0.0"
-                    def releaseNotes = "[Download Artifact]
+                    def releaseNotes = "[Download Artifact]"
 
                     // Authenticate with GitHub using the provided PAT
                     withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: '', passwordVariable: 'GITHUB_TOKEN')]) {
