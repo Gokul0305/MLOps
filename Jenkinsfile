@@ -14,8 +14,8 @@ pipeline{
 
         VENV_DIR  = 'JenkinsEnvironment'
         def PR = env.JOB_NAME.split('/').last()
-        ARTIFACTORY_URL = 'http://192.168.1.40:8082/artifactory'
-        ARTIFACTORY_CREDENTIALS_ID = 'Artifactory'
+        ARTIFACTORY_URL = env.ARTIFACTORY_URL
+        ARTIFACTORY_CREDENTIALS_ID = env.ARTIFACTORY_CREDENTIALS_ID
         REPO = 'Python-Executables'
         PROJECT = 'Test'
         VERSION = '1.0.0'
