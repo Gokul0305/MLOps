@@ -78,7 +78,7 @@ stage('Run Unit Tests') {
             if (isUnix()) {
                 sh "python tests/run_tests.py"
             } else {
-                bat "python tests/run_tests.py"
+                bat "python tests/run_test.py"
             }
         }
     }
