@@ -157,7 +157,7 @@ stage('Run Unit Tests') {
                     withCredentials([usernamePassword(credentialsId: 'Gokul0305-PAT', usernameVariable: 'Gokul0305', passwordVariable: 'GITHUB_TOKEN')]) {
                         bat """
                             gh auth login --with-token \$GITHUB_TOKEN
-                            gh release create v${VERSION} --generate-notes --notes "${releaseNotes}" --title "${releaseTitle} --generate-notes --latest"
+                            gh release create v${VERSION} --generate-notes  --latest  --notes "${releaseNotes}"  --title "${releaseTitle}"
                         """
                     }
                 }
