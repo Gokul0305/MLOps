@@ -177,5 +177,9 @@ post {
             to: env.DEFAULT_RECIPIENTS
         )
     }
+
+    always {
+            deleteDir()
+        }
 }
 }
