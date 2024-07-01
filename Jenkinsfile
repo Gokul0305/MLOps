@@ -136,8 +136,31 @@ stage('Run Unit Tests') {
 
         }
 
+        stage('Tag Git Repository') {
+            steps {
+                script {
+                    // Generate tag name (e.g., v1.0.0)
+                    def tagName = "v${VERSION}"
+                    
+                    // Tag the Git repository
+                    bat "git tag -a ${tagName} -m 'Version ${VERSION} release'"
+                }
+            }
+        }
+        
+        stage('Push Git Tag') {
+            steps {
+                script {
+                    // Push the tag to remote repository
+                    bat "git push origin ${tagName}"
+                }
+            }
+        }
+
 
     }
+
+    
 
     // Post Build Actions
 
