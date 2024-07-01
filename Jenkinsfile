@@ -18,6 +18,7 @@ pipeline{
         PROJECT = 'Test'
         VERSION = '1.0.0'
         FILE_PATH = 'dist/main.exe'
+        GITHUB_TOKEN = credentials('Gokul0305-PAT')
     }
 
     // Stages
@@ -150,6 +151,7 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     bat """
+                    gh auth login --with-token ${GITHUB_TOKEN}
                     gh release create v${VERSION} --generate-notes --latest    --notes "[Download Artifact](http://192.168.1.40:8082/artifactory/Python-Executables/Test/1.0.0/main.exe)" --title "${PROJECT} v${VERSION}"
                     """
                 }
