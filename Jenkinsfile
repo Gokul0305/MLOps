@@ -14,7 +14,7 @@ pipeline{
 
         VENV_DIR  = 'JenkinsEnvironment'
         def PR = env.JOB_NAME.split('/').last()
-        ARTIFACTORY_URL = 'http://192.168.209.179:8082/artifactory'
+        ARTIFACTORY_URL = 'http://192.168.1.40:8082/artifactory'
         ARTIFACTORY_CREDENTIALS_ID = 'Artifactory'
         REPO = 'Python-Executables'
         PROJECT = 'Test'
@@ -97,7 +97,7 @@ pipeline{
                                         <p style="font-size:16px; font-family:Arial;">${PR} initiated by: ${env.CHANGE_AUTHOR}</p>
                                         <p style="font-size:16px; font-family:Arial;">Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                                         <p style="font-size:16px; font-family:Arial;">Best Regards,<br>Jenkins</p>""",
-                                to: "gokulvignesh1234@gmail.com"
+                                to: "gokul.m@mechmetengineers.com"
                             )
                     
                 }
@@ -110,7 +110,7 @@ pipeline{
                                     <p style="font-size:16px; font-family:Arial;">${PR} initiated by: ${env.CHANGE_AUTHOR}</p>
                                     <p style="font-size:16px; font-family:Arial;">Check the build details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                                     <p style="font-size:16px; font-family:Arial;">Best Regards,<br>Jenkins</p>""",
-                            to: "gokulvignesh1234@gmail.com"
+                            to: "gokul.m@mechmetengineers.com"
                         )
                 }
                 
