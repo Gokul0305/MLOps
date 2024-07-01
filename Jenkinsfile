@@ -14,8 +14,8 @@ pipeline{
 
         VENV_DIR  = 'JenkinsEnvironment'
         def PR = env.JOB_NAME.split('/').last()
-        ARTIFACTORY_URL = env.ARTIFACTORY_URL
-        ARTIFACTORY_CREDENTIALS_ID = env.ARTIFACTORY_CREDENTIALS_ID
+        def ARTIFACTORY_URL = env.ARTIFACTORY_URL
+        def ARTIFACTORY_CREDENTIALS_ID = env.ARTIFACTORY_CREDENTIALS_ID
         REPO = 'Python-Executables'
         PROJECT = 'Test'
         VERSION = '1.0.0'
