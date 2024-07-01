@@ -114,7 +114,7 @@ stage('Run Unit Tests') {
             steps {
                 script {
                     // Configure Artifactory server
-                    def server = Artifactory.server(env.ARTIFACTORY_CREDENTIALS_ID')
+                    def server = Artifactory.server(env.ARTIFACTORY_CREDENTIALS_ID)
                     
                     // Define upload specifications
                     def uploadSpec = """{
